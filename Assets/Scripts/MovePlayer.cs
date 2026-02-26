@@ -10,7 +10,7 @@ public class MovePlayer : MonoBehaviour
     public bool doubleJump;
 
     public Transform groundCheck;
-    public float circleRadius = 0.2f;
+    public float circleRadius = 0.1f;
     public LayerMask _layerMask;
     float posX;
     private void Start()
@@ -38,7 +38,9 @@ public class MovePlayer : MonoBehaviour
     {
         posX = Input.GetAxisRaw("Horizontal");
 
-        rb.linearVelocity = new Vector3(posX * speed, rb.linearVelocity.y, 0f);
+        Vector2 velocity = rb.linearVelocity;
+        velocity.x = posX * speed;
+        rb.linearVelocity = velocity;
     }
     bool isGrounded()
     {
